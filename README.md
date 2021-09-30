@@ -107,6 +107,34 @@
     * "deprecated" (and "reserved") keywords
     * version-rolling your proto definitions
 
+  * Compiling the protobuf into client/server stubs
+    * compilers
+      * [Protoc](https://grpc.io/docs/protoc-installation/) *(not used directly at kount)*
+      * [Prototool](https://github.com/uber/prototool)
+      * [Buf](https://github.com/bufbuild/buf)
+        * See also: The [Buf docs](https://docs.buf.build/introduction)
+    * compiler plugins
+      * [Go support for protobuf](https://pkg.go.dev/google.golang.org/protobuf#section-readme) requires a compiler plugin ([protoc-gen-go](https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go)) and a runtime library. See <https://developers.google.com/protocol-buffers/docs/reference/go-generated#invocation>.
+      * [Buf requires](https://docs.buf.build/tour/generate-go-code#install-plugins) `protoc-gen-go` and `protoc-gen-go-grpc` plugins to generate Go code.
+      * grpc-gateway requires the `protoc-gen-grpc-gateway` plugin
+      * For example, a generic example `buf.gen.yaml` needs multiple plugins to compile Go:
+
+            version: v1
+            plugins:
+              - name: go
+                out: gen/go
+                opt:
+                  - paths=source_relative
+              - name: go-grpc
+                out: gen/go
+                opt:
+                  - paths=source_relative
+              - name: grpc-gateway
+                out: gen/go
+                opt:
+                  - paths=source_relative
+                  - generate_unbound_methods=true
+
   * Unary vs streaming gRPC // Todo: meeting #2
 
   * Middleware/Interceptors // Todo: meeting #2
