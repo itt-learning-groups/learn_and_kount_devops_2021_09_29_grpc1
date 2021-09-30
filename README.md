@@ -110,7 +110,7 @@
   * Compiling the protobuf into client/server stubs
     * compilers
       * [Protoc](https://grpc.io/docs/protoc-installation/) *(not used directly at kount)*
-      * [Prototool](https://github.com/uber/prototool)
+      * [Prototool](https://github.com/uber/prototool) *(no longer used by Kount, and, indeed, not even recommended now by Uber, who created it)*
       * [Buf](https://github.com/bufbuild/buf)
         * See also: The [Buf docs](https://docs.buf.build/introduction)
     * compiler plugins
